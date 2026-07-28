@@ -17,7 +17,7 @@ const hasCertifications =
       <li>
         <a
           href="#about"
-          class="text-gray-700 hover:text-black transition-colors font-medium"
+          class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
         >
           About
         </a>
@@ -27,7 +27,7 @@ const hasCertifications =
           <li>
             <a
               href="#projects"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
+              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
             >
               Projects
             </a>
@@ -39,7 +39,7 @@ const hasCertifications =
           <li>
             <a
               href="#experience"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
+              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
             >
               Experience
             </a>
@@ -51,7 +51,7 @@ const hasCertifications =
           <li>
             <a
               href="#education"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
+              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
             >
               Education
             </a>
@@ -63,9 +63,21 @@ const hasCertifications =
           <li>
             <a
               href="#certifications"
-              class="text-gray-700 hover:text-black transition-colors font-medium"
+              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
             >
               Certifications
+            </a>
+          </li>
+        )
+      }
+      {
+        siteConfig.contact && (
+          <li>
+            <a
+              href="#contact"
+              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
+            >
+              Contact
             </a>
           </li>
         )

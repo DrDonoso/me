@@ -6,6 +6,8 @@ import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Education from "../components/Education.astro";
 import Certifications from "../components/Certifications.astro";
+import Contact from "../components/Contact.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import Footer from "../components/Footer.astro";
 import { siteConfig } from "../config";
 import "../styles/global.css";
@@ -16,9 +18,47 @@ const pageTitle = `${siteConfig.name} - ${siteConfig.title}${
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL("/og.png", Astro.site);
 const twitterHandle = siteConfig.social.twitter?.split("/").pop();
+
+// Structured data so search engines can tie this domain, the GitHub account
+// and the LinkedIn profile to the same person rather than inferring it.
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: canonical.href,
+  image: new URL(siteConfig.photoFallback ?? siteConfig.photo, Astro.site).href,
+  jobTitle: siteConfig.title,
+  description: siteConfig.description,
+  email: `mailto:${siteConfig.social.email}`,
+  worksFor: {
+    "@type": "Organization",
+    name: siteConfig.company,
+    url: siteConfig.companyUrl,
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Barcelona",
+    addressCountry: "ES",
+  },
+  knowsLanguage: siteConfig.languages.map((l) => l.name),
+  knowsAbout: siteConfig.skills,
+  hasCredential: siteConfig.certifications.map((c) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: c.name,
+    credentialCategory: "certification",
+    recognizedBy: { "@type": "Organization", name: c.issuer },
+  })),
+  alumniOf: siteConfig.education.map((e) => ({
+    "@type": "EducationalOrganization",
+    name: e.school,
+  })),
+  sameAs: Object.entries(siteConfig.social)
+    .filter(([key, value]) => key !== "email" && value)
+    .map(([, value]) => value),
+};
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -26,6 +66,26 @@ const twitterHandle = siteConfig.social.twitter?.split("/").pop();
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content={siteConfig.accentColor} />
     <link rel="canonical" href={canonical} />
+
+    {/* Applied before first paint so the page never flashes the wrong theme. */}
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const dark =
+          stored === "dark" ||
+          (!stored &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches);
+        document.documentElement.classList.toggle("dark", dark);
+      })();
+    </script>
+
+    <style
+      is:global
+      set:html={`
+        :root { --accent: ${siteConfig.accentColor}; --accent-text: ${siteConfig.accentTextColor}; --page-bg: #ffffff; }
+        .dark { --accent: ${siteConfig.dark.accentColor}; --accent-text: ${siteConfig.dark.accentTextColor}; --page-bg: #0B1120; }
+      `}
+    />
 
     <title>{pageTitle}</title>
     <meta name="description" content={siteConfig.description} />
@@ -60,8 +120,15 @@ const twitterHandle = siteConfig.social.twitter?.split("/").pop();
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(personSchema)}
+    />
   </head>
-  <body>
+  <body class="bg-white dark:bg-[#0B1120] transition-colors duration-300">
+    <ThemeToggle />
     <Header />
     <section>
       <Hero />
@@ -70,6 +137,7 @@ const twitterHandle = siteConfig.social.twitter?.split("/").pop();
       <Experience />
       <Education />
       <Certifications />
+      <Contact />
     </section>
     <Footer />
   </body>

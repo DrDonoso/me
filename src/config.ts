@@ -10,15 +10,28 @@ export const siteConfig = {
   // WCAG AA 4.5:1 on white. The vivid accentColor above is only used for large
   // text and decorative elements, where 3:1 is enough.
   accentTextColor: "#B45309",
+  // Dark mode inverts the relationship: on a near-black surface the light-mode
+  // text shade only reaches 3.75:1, so both tokens move lighter.
+  dark: {
+    accentColor: "#F59E0B", // 8.77:1 on #0B1120
+    accentTextColor: "#FBBF24", // 11.28:1 on #0B1120
+  },
+  photo: "/profile.webp",
+  photoFallback: "/profile.jpg",
   social: {
-    email: "davidrodriguezdonoso95@gmail.com",
+    email: "hello@drdonoso.com",
     linkedin: "https://www.linkedin.com/in/drdonoso",
     github: "https://github.com/DrDonoso",
     twitter: "https://x.com/Dr_Donoso",
     credly: "https://www.credly.com/users/drdonoso",
-    telegram: "https://t.me/Davidhash",
+    telegram: "https://t.me/drdonoso",
     kofi: "https://ko-fi.com/drdonoso",
     untappd: "https://untappd.com/user/DrDonoso",
+  },
+  contact: {
+    heading: "Let's talk",
+    text: "Got an interesting problem, a project in mind, or just want to say hi? My inbox is open.",
+    location: "Barcelona, Spain",
   },
   aboutMe:
     "Cloud & DevOps Consultant at Microsoft, based in Barcelona. I've spent the last decade building and shipping backend systems — retail apps serving millions of customers, credit insurance platforms, data pipelines — mostly on .NET and Azure, with Kubernetes and CI/CD underneath. These days I help enterprise customers get the most out of Azure and GitHub: designing cloud architectures, automating delivery pipelines and building platforms that teams actually enjoy working with. Lately I've been deep into AI: RAG pipelines, LLM-powered tooling and agentic workflows, both at work and in my own side projects.",

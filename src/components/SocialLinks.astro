@@ -10,7 +10,7 @@ interface Props {
 
 const {
   containerClass = "flex flex-wrap gap-x-6 gap-y-3",
-  linkClass = "transition-colors duration-300 hover:text-[var(--accent-color)]",
+  linkClass = "transition-colors duration-300 hover-accent",
   iconClass = "h-6 w-6",
 } = Astro.props;
 
@@ -38,7 +38,7 @@ const links = ORDER.filter((key) => social[key] && SOCIAL_ICONS[key]).map(
 );
 ---
 
-<div class={containerClass} style={`--accent-color: ${siteConfig.accentColor}`}>
+<div class={containerClass}>
   {
     links.map((link) => (
       <a

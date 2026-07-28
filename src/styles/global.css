@@ -1,5 +1,55 @@
 @import "tailwindcss";
 
+/* Manual dark-mode toggle (class-based) instead of media-query only,
+   so the header button can override the system preference. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 body {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* The accent lives in CSS variables rather than inline styles so it can flip
+   in dark mode. Values are injected from src/config.ts by the page head. */
+
+.hero-gradient {
+  background: radial-gradient(
+    ellipse 800px 1200px at 0% 0%,
+    color-mix(in srgb, var(--accent) 25%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 15%, transparent) 20%,
+    color-mix(in srgb, var(--accent) 6%, transparent) 40%,
+    color-mix(in srgb, var(--page-bg) 70%, transparent) 70%,
+    color-mix(in srgb, var(--page-bg) 90%, transparent) 90%,
+    var(--page-bg) 100%
+  );
+}
+
+.accent-text {
+  color: var(--accent-text);
+}
+
+.accent-bg {
+  background-color: var(--accent);
+}
+
+.accent-fill {
+  fill: var(--accent);
+}
+
+.accent-btn {
+  background-color: var(--accent-text);
+  color: #ffffff;
+}
+
+.dark .accent-btn {
+  /* Light amber needs dark text on top to stay readable. */
+  color: #1c1206;
+}
+
+.hover-accent:hover {
+  color: var(--accent-text);
+}
+
+.accent-dot {
+  background-color: var(--accent);
+  border-color: var(--accent);
 }
