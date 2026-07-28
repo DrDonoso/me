@@ -33,8 +33,12 @@ export const siteConfig = {
     text: "Got an interesting problem, a project in mind, or just want to say hi? My inbox is open.",
     location: "Barcelona, Spain",
   },
-  aboutMe:
-    "Cloud & DevOps Consultant at Microsoft, based in Barcelona. I've spent the last decade building and shipping backend systems — retail apps serving millions of customers, credit insurance platforms, data pipelines — mostly on .NET and Azure, with Kubernetes and CI/CD underneath. These days I help enterprise customers get the most out of Azure and GitHub: designing cloud architectures, automating delivery pipelines and building platforms that teams actually enjoy working with. Lately I've been deep into AI: RAG pipelines, LLM-powered tooling and agentic workflows, both at work and in my own side projects. Off the clock I run a homelab built on Proxmox, automate the house with Home Assistant, and generally spend far too much time self-hosting things I could have paid for — I'm a firm believer in open source and try to give back to the FOSS ecosystem where I can.",
+  aboutMe: [
+    "I'm a Cloud & DevOps Consultant at Microsoft, based in Barcelona. I build and automate the platforms that engineering teams work on every day.",
+    "I've spent the last decade building and shipping backend systems — retail apps serving millions of customers across Europe, credit insurance platforms, data pipelines — mostly on .NET and Azure, with microservices, Kubernetes and CI/CD underneath.",
+    "These days I help enterprise customers get the most out of Azure and GitHub: designing cloud architectures, automating delivery pipelines and building platforms teams actually enjoy working with. Lately that increasingly means AI — RAG pipelines, LLM-powered tooling and agentic workflows, at work and in my own side projects.",
+    "Off the clock I run a homelab on Proxmox, automate the house with Home Assistant, and spend far too much time self-hosting things I could have paid for. Firm believer in open source, and I try to give back to the FOSS ecosystem where I can.",
+  ],
   skills: [
     "C#",
     ".NET",
