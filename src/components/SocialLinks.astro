@@ -1,0 +1,66 @@
+---
+import { siteConfig } from "../config";
+import { SOCIAL_ICONS } from "../socialIcons";
+
+interface Props {
+  containerClass?: string;
+  linkClass?: string;
+  iconClass?: string;
+}
+
+const {
+  containerClass = "flex flex-wrap gap-x-6 gap-y-3",
+  linkClass = "transition-colors duration-300 hover:text-[var(--accent-color)]",
+  iconClass = "h-6 w-6",
+} = Astro.props;
+
+// Display order. Any key missing from siteConfig.social is skipped.
+const ORDER = [
+  "email",
+  "linkedin",
+  "github",
+  "twitter",
+  "credly",
+  "telegram",
+  "kofi",
+  "untappd",
+];
+
+const social = (siteConfig.social ?? {}) as Record<string, string | undefined>;
+
+const links = ORDER.filter((key) => social[key] && SOCIAL_ICONS[key]).map(
+  (key) => ({
+    key,
+    ...SOCIAL_ICONS[key],
+    href: key === "email" ? `mailto:${social[key]}` : (social[key] as string),
+    external: key !== "email",
+  })
+);
+---
+
+<div class={containerClass} style={`--accent-color: ${siteConfig.accentColor}`}>
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        aria-label={link.label}
+        title={link.label}
+        class={linkClass}
+        target={link.external ? "_blank" : undefined}
+        rel={link.external ? "noopener noreferrer" : undefined}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox={link.viewBox}
+          fill="currentColor"
+          aria-hidden="true"
+          class={iconClass}
+        >
+          {link.paths.map((d) => (
+            <path d={d} />
+          ))}
+        </svg>
+      </a>
+    ))
+  }
+</div>
