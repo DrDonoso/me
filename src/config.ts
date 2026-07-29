@@ -62,6 +62,13 @@ export const siteConfig = {
   ],
   projects: [
     {
+      name: "Finlytics",
+      description:
+        "Self-hosted personal finance and investment tracker. Drop in a bank statement PDF and an LLM extracts and categorises every transaction; pluggable connectors pull live portfolio data, with provider tokens encrypted at rest. Ships as a Docker image built and released by CI.",
+      link: "https://github.com/DrDonoso/Finlytics",
+      skills: ["Python", "FastAPI", "React", "PostgreSQL", "AI"],
+    },
+    {
       name: "PowershellTerminal",
       description:
         "My PowerShell terminal setup, installable with a single bootstrap one-liner: winget tools, PowerShell modules, Chocolatey packages and dotfiles, no cloning required.",
@@ -81,13 +88,6 @@ export const siteConfig = {
         "Scans r/soccer for goal posts involving your teams, downloads the clips and delivers them to a Telegram channel. Ships as a single Docker container with SQLite for state and retries.",
       link: "https://github.com/DrDonoso/RedditSoccerGoals",
       skills: ["Python", "Docker", "SQLite"],
-    },
-    {
-      name: "BoardGameHelperBot",
-      description:
-        "Telegram bot that answers board game rules questions using Retrieval-Augmented Generation over a vector database, with an LLM generating contextually grounded answers.",
-      link: "https://github.com/DrDonoso/BoardGameHelperBot",
-      skills: ["Python", "LLM", "RAG"],
     },
   ],
   experience: [
