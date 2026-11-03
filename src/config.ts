@@ -76,18 +76,20 @@ export const siteConfig = {
       skills: ["PowerShell", "Automation", "Dotfiles"],
     },
     {
-      name: "WC2026Over9000Bot",
+      name: "Timelife",
       description:
-        "Telegram bot running a 2026 FIFA World Cup betting pool: live scoring against real fixtures, leaderboards and bump charts, deduplicated goal notifications from dual sources and a daily AI-generated narrative.",
-      link: "https://github.com/DrDonoso/WC2026Over9000Bot",
-      skills: ["Python", "AI", "Telegram"],
+        "Private family timeline for children's milestones: photos, videos and notes on a timeline that zooms from years down to days, with a coloured line per child. Invitation-only, with location and device metadata stripped from every upload. Ships as a single Docker image alongside PostgreSQL.",
+      link: "https://github.com/DrDonoso/timelife",
+      demo: "https://demo.timelife.lauvid.com",
+      skills: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "PWA"],
     },
     {
-      name: "RedditSoccerGoals",
+      name: "Juntia",
       description:
-        "Scans r/soccer for goal posts involving your teams, downloads the clips and delivers them to a Telegram channel. Ships as a single Docker container with SQLite for state and retries.",
-      link: "https://github.com/DrDonoso/RedditSoccerGoals",
-      skills: ["Python", "Docker", "SQLite"],
+        "Self-hosted portal for a residents' community: transparent shared finances read from bank statement PDFs by a local parser that checks every running balance, plus a Kanban board for repairs, an events calendar, a neighbours directory and contacts. Invitation-only, in English and Spanish.",
+      link: "https://github.com/DrDonoso/juntia",
+      demo: "https://demo.juntia.drdonoso.com",
+      skills: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "PDF parsing"],
     },
   ],
   experience: [
