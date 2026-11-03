@@ -215,4 +215,13 @@ import SocialLinks from "./SocialLinks.astro";
   .animation-delay-600 {
     animation-delay: 0.6s;
   }
+
+  /* Without the animation the content simply appears: the opacity: 0 it
+     starts from must not stick. */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-in {
+      animation: none;
+      opacity: 1;
+    }
+  }
 </style>

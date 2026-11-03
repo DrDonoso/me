@@ -17,6 +17,17 @@ body {
   font-family: var(--font-mono);
 }
 
+/* Visitors who ask for less motion get instant state changes instead of
+   animated ones: card and button lifts, the header fade, theme colour fades.
+   The hero fade-in is switched off in Hero.astro. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* The accent lives in CSS variables rather than inline styles so it can flip
    in dark mode. Values are injected from src/config.ts by the page head. */
 
