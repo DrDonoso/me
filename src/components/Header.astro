@@ -6,6 +6,15 @@ const hasExperience = siteConfig.experience && siteConfig.experience.length > 0;
 const hasEducation = siteConfig.education && siteConfig.education.length > 0;
 const hasCertifications =
   siteConfig.certifications && siteConfig.certifications.length > 0;
+
+const links = [
+  { href: "#about", label: "About", show: true },
+  { href: "#projects", label: "Projects", show: hasProjects },
+  { href: "#experience", label: "Experience", show: hasExperience },
+  { href: "#education", label: "Education", show: hasEducation },
+  { href: "#certifications", label: "Certifications", show: hasCertifications },
+  { href: "#contact", label: "Contact", show: Boolean(siteConfig.contact) },
+].filter((link) => link.show);
 ---
 
 <header
@@ -14,79 +23,101 @@ const hasCertifications =
 >
   <nav class="max-w-7xl mx-auto px-8 py-4">
     <ul class="flex items-center gap-8 justify-center">
-      <li>
-        <a
-          href="#about"
-          class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-        >
-          About
-        </a>
-      </li>
       {
-        hasProjects && (
+        links.map((link) => (
           <li>
             <a
-              href="#projects"
+              href={link.href}
               class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
             >
-              Projects
+              {link.label}
             </a>
           </li>
-        )
-      }
-      {
-        hasExperience && (
-          <li>
-            <a
-              href="#experience"
-              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-            >
-              Experience
-            </a>
-          </li>
-        )
-      }
-      {
-        hasEducation && (
-          <li>
-            <a
-              href="#education"
-              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-            >
-              Education
-            </a>
-          </li>
-        )
-      }
-      {
-        hasCertifications && (
-          <li>
-            <a
-              href="#certifications"
-              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-            >
-              Certifications
-            </a>
-          </li>
-        )
-      }
-      {
-        siteConfig.contact && (
-          <li>
-            <a
-              href="#contact"
-              class="text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors font-medium"
-            >
-              Contact
-            </a>
-          </li>
-        )
+        ))
       }
     </ul>
   </nav>
 </header>
 
+{/* The bar above is desktop-only, so phones get a menu button next to the
+    theme toggle. The panel is a popover: it closes on Escape and on any
+    click outside it without extra code. */}
+<button
+  id="menu-button"
+  type="button"
+  popovertarget="mobile-menu"
+  aria-expanded="false"
+  aria-label="Menu"
+  title="Menu"
+  class="group md:hidden fixed top-4 right-16 z-[60] p-2.5 rounded-full bg-white/80 dark:bg-white/10 backdrop-blur-sm shadow-sm ring-1 ring-gray-200/70 dark:ring-white/10 text-gray-700 dark:text-gray-200 hover-accent transition-colors duration-300"
+>
+  <svg
+    class="w-5 h-5 block group-aria-expanded:hidden"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+  <svg
+    class="w-5 h-5 hidden group-aria-expanded:block"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M18 6L6 18M6 6l12 12" />
+  </svg>
+</button>
+
+<div
+  id="mobile-menu"
+  popover
+  class="md:hidden m-0 inset-auto top-16 right-4 w-56 p-2 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-[#131C2E] shadow-xl"
+>
+  <nav>
+    <ul>
+      {
+        links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="block px-4 py-3 rounded-xl font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/5 hover-accent transition-colors"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
 <script>
+  const menu = document.getElementById("mobile-menu");
+  const menuButton = document.getElementById("menu-button");
+
+  if (menu && menuButton) {
+    // Keeps the button's state (and its icon) in step with the popover.
+    menu.addEventListener("toggle", (event) => {
+      const open = (event as ToggleEvent).newState === "open";
+      menuButton.setAttribute("aria-expanded", String(open));
+    });
+    // Picking a section scrolls to it, so the menu should get out of the way.
+    menu.addEventListener("click", (event) => {
+      if (event.target instanceof Element && event.target.closest("a")) {
+        menu.hidePopover();
+      }
+    });
+  }
+
   // Listed as full strings so Tailwind generates them; the dark variant keeps
   // the light nav links readable once the bar becomes opaque in dark mode.
   const SCROLLED = ["bg-white/80", "dark:bg-[#0B1120]/80", "backdrop-blur-sm"];
