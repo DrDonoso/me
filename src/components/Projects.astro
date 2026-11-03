@@ -20,27 +20,20 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
           <div class="lg:col-span-8">
             <div class="space-y-8">
               {siteConfig.projects.map((project, index) => {
-                const Component = project.link ? "a" : "div";
-                const linkProps = project.link
-                  ? {
-                      href: project.link,
-                      target: "_blank",
-                      rel: "noopener noreferrer",
-                    }
-                  : {};
-
                 return (
                   <div class="group relative">
-                    <Component
-                      {...linkProps}
-                      class={`block relative p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-[#131C2E] rounded-xl sm:rounded-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 ${
+                    <div
+                      class={`relative p-4 sm:p-6 md:p-8 bg-gray-50 dark:bg-[#131C2E] rounded-xl sm:rounded-2xl border border-gray-200 dark:border-gray-800 transition-all duration-300 ${
                         project.link
                           ? "hover:bg-white dark:hover:bg-[#1A2438] hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-700 hover:-translate-y-1"
                           : ""
                       }`}
                     >
                       {project.link && (
-                        <div class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 dark:bg-gray-100 rounded-full text-white dark:text-gray-900 transition-all duration-300 group-hover:bg-gray-700 dark:group-hover:bg-white">
+                        <div
+                          aria-hidden="true"
+                          class="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 flex items-center justify-center bg-gray-900 dark:bg-gray-100 rounded-full text-white dark:text-gray-900 transition-all duration-300 group-hover:bg-gray-700 dark:group-hover:bg-white"
+                        >
                           <svg
                             class="w-4 h-4 sm:w-4.5 sm:h-4.5 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                             fill="none"
@@ -64,8 +57,22 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                           >
                             0{index + 1}
                           </span>
+                          {/* Stretched link: its ::after covers the whole card, so
+                              the card stays clickable while the demo link below
+                              sits on top of it. */}
                           <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mt-1">
-                            {project.name}
+                            {project.link ? (
+                              <a
+                                href={project.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="after:absolute after:inset-0 after:rounded-xl sm:after:rounded-2xl focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[color:var(--accent-text)]"
+                              >
+                                {project.name}
+                              </a>
+                            ) : (
+                              project.name
+                            )}
                           </h3>
                         </div>
 
@@ -90,8 +97,34 @@ const hasProjects = siteConfig.projects && siteConfig.projects.length > 0;
                             ))}
                           </div>
                         )}
+
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="relative z-10 flex w-fit items-center gap-1.5 text-sm sm:text-base font-semibold underline decoration-transparent hover:decoration-current underline-offset-4 transition-colors duration-300 accent-text"
+                          >
+                            Live demo
+                            <span class="sr-only">of {project.name}</span>
+                            <svg
+                              class="w-4 h-4"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M7 17L17 7M17 7H7M17 7V17"
+                              />
+                            </svg>
+                          </a>
+                        )}
                       </div>
-                    </Component>
+                    </div>
                   </div>
                 );
               })}

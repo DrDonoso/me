@@ -28,10 +28,9 @@ Almost everything lives in a single file: **`src/config.ts`**.
 | `accentTextColor` | Darker shade used for small text so it clears WCAG AA (4.5:1) |
 | `social` | Social links. Add a key and its icon appears automatically |
 | `aboutMe`, `skills`, `languages` | The About section |
-| `projects` | Project cards |
+| `projects` | Project cards. `link` makes the whole card clickable; optional `demo` adds a "Live demo" link |
 | `experience`, `education` | Timeline sections |
 | `certifications` | Certification cards |
-| `resumeUrl` | Target of the "View my CV" button |
 
 ### Adding a social network
 
