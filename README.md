@@ -57,6 +57,7 @@ src/
 │   ├── Education.astro       Education timeline
 │   ├── Certifications.astro  Certification cards
 │   ├── Footer.astro          Footer nav
+│   ├── Fonts.astro           Self-hosted IBM Plex and font preloads
 │   └── SocialLinks.astro     Shared social icon row
 ├── config.ts                 ← all the content
 ├── socialIcons.ts            Brand icon paths
@@ -73,6 +74,9 @@ and a split accent-colour token for accessibility.
 
 Brand icons from [Simple Icons](https://simpleicons.org) (CC0-1.0) and
 [Bootstrap Icons](https://icons.getbootstrap.com) (MIT).
+
+Typeset in [IBM Plex](https://github.com/IBM/plex) Mono and Sans (SIL Open
+Font License 1.1), self-hosted through [Fontsource](https://fontsource.org).
 
 ## License
 

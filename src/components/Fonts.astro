@@ -1,0 +1,17 @@
+---
+// Self-hosted IBM Plex instead of Google Fonts: no requests to third-party
+// servers, and only the weights the site uses. Each weight is split into
+// unicode-range subsets, so browsers download just the ones a page needs.
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import "@fontsource/ibm-plex-mono/600.css";
+import "@fontsource/ibm-plex-mono/700.css";
+import "@fontsource/ibm-plex-sans/400.css";
+
+// The header and the hero, both above the fold, are set in these weights.
+import mono500 from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2?url";
+import mono700 from "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-700-normal.woff2?url";
+---
+
+<link rel="preload" href={mono500} as="font" type="font/woff2" crossorigin />
+<link rel="preload" href={mono700} as="font" type="font/woff2" crossorigin />
