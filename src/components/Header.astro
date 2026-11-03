@@ -87,12 +87,16 @@ const hasCertifications =
 </header>
 
 <script>
+  // Listed as full strings so Tailwind generates them; the dark variant keeps
+  // the light nav links readable once the bar becomes opaque in dark mode.
+  const SCROLLED = ["bg-white/80", "dark:bg-[#0B1120]/80", "backdrop-blur-sm"];
+
   window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     if (window.scrollY > 100) {
-      header?.classList.add("bg-white/80", "backdrop-blur-sm");
+      header?.classList.add(...SCROLLED);
     } else {
-      header?.classList.remove("bg-white/80", "backdrop-blur-sm");
+      header?.classList.remove(...SCROLLED);
     }
   });
 </script>
