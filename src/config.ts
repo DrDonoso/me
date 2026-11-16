@@ -69,11 +69,12 @@ export const siteConfig = {
       skills: ["Python", "FastAPI", "React", "PostgreSQL", "AI"],
     },
     {
-      name: "PowershellTerminal",
+      name: "DiskSprawl",
       description:
-        "My PowerShell terminal setup, installable with a single bootstrap one-liner: winget tools, PowerShell modules, Chocolatey packages and dotfiles, no cloning required.",
-      link: "https://github.com/DrDonoso/PowershellTerminal",
-      skills: ["PowerShell", "Automation", "Dotfiles"],
+        "Self-hosted disk usage analyser for local disks and NAS shares. Folders are scanned on their own schedules by du, ncdu, gdu or a built-in engine, throttled so the storage stays responsive, and a treemap shows where the space goes and which folders grew or shrank between scans. Read-only by design, in a single Docker image.",
+      link: "https://github.com/DrDonoso/disksprawl",
+      demo: "https://demo.disksprawl.drdonoso.com",
+      skills: ["Python", "FastAPI", "React", "TypeScript", "SQLite", "Docker"],
     },
     {
       name: "Timelife",
@@ -90,6 +91,13 @@ export const siteConfig = {
       link: "https://github.com/DrDonoso/juntia",
       demo: "https://demo.juntia.drdonoso.com",
       skills: ["Python", "FastAPI", "React", "TypeScript", "PostgreSQL", "PDF parsing"],
+    },
+    {
+      name: "PowershellTerminal",
+      description:
+        "My PowerShell terminal setup, installable with a single bootstrap one-liner: winget tools, PowerShell modules, Chocolatey packages and dotfiles, no cloning required.",
+      link: "https://github.com/DrDonoso/PowershellTerminal",
+      skills: ["PowerShell", "Automation", "Dotfiles"],
     },
   ],
   experience: [
