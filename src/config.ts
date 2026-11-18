@@ -66,6 +66,7 @@ export const siteConfig = {
       description:
         "Self-hosted personal finance and investment tracker. Drop in a bank statement PDF and an LLM extracts and categorises every transaction; pluggable connectors pull live portfolio data, with provider tokens encrypted at rest. Ships as a Docker image built and released by CI.",
       link: "https://github.com/DrDonoso/Finlytics",
+      demo: "https://demo.finlytics.drdonoso.com",
       skills: ["Python", "FastAPI", "React", "PostgreSQL", "AI"],
     },
     {
